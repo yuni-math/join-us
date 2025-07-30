@@ -2,32 +2,319 @@
 <html lang="he" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <title>בדיקת טופס</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>אוהבים מתמטיקה? בואו נישאר בקשר!</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@400;600;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'hebrew': ['Assistant', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
     <style>
-        body { font-family: sans-serif; padding: 2rem; text-align: center; }
-        h1 { color: #333; }
-        p { color: #666; }
-        hr { margin: 2rem 0; }
-        #form-container {
-            border: 2px dashed #ccc;
-            padding: 2rem;
-            margin: 2rem auto;
-            max-width: 600px;
+        html {
+            scroll-behavior: smooth;
+        }
+        body {
+            font-family: 'Assistant', sans-serif;
+            padding-top: 72px; /* Height of the sticky header */
+        }
+        .card-hover {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .card-hover:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+        #notification-toast {
+            position: fixed;
+            bottom: -100px;
+            left: 50%;
+            transform: translateX(-50%);
+            transition: bottom 0.5s ease-in-out;
+            z-index: 100;
+        }
+        /* Responsive Iframe Height */
+        .embedded-form-iframe {
+            height: 580px; /* Default height for mobile */
+            width: 100%;
+            border: none;
+        }
+        @media (min-width: 768px) { /* md breakpoint */
+            .embedded-form-iframe {
+                height: 420px; /* Shorter height for desktop */
+            }
         }
     </style>
 </head>
-<body>
+<body class="bg-gray-100 text-gray-800">
 
-    <h1>בדיקת טופס מוטמע</h1>
-    <p>אם הטופס לא מופיע בתוך המסגרת המקווקוות, הבעיה היא בוודאות בקוד ההטמעה או בהגדרות אצל ספק הטפסים.</p>
-    <hr>
-
-    <div id="form-container">
-        <!-- Your Embed Code Starts Here -->
-        <div id="InfoPageEmbedId615245"></div>
-        <script src="https://lp.landing-page.mobi/index.php?page=embed&id=615245&token=4c230d359d4e95359315ef5f600dae43&EmbedId=InfoPageEmbedId615245" type="text/javascript"></script>
-        <!-- End of Embed Code -->
+    <!-- Sticky Header -->
+    <div id="sticky-header" class="fixed top-0 right-0 left-0 bg-white shadow-md z-40 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="flex justify-center items-center h-[72px]">
+                <a href="https://yuni.co.il" target="_blank" rel="noopener noreferrer" class="flex items-center">
+                    <img src="https://drive.google.com/drive-viewer/AKGpihZaDpglluyxY7eIiUwkXmX2ATWMYLZbHx1rUL-M4IqNuBGeK_m0q8198zKQGyHv0-EuilRk1tbLCdepj2FFEvx-rykfylaEUe4=s1600-rw-v1" 
+                         alt="לוגו יוני" class="h-12"
+                         onerror="this.onerror=null;this.src='https://placehold.co/250x50/eeeeee/333333?text=Yuni+Logo';">
+                </a>
+            </div>
+        </div>
     </div>
 
+    <!-- Hero Section -->
+    <header class="bg-gray-100 flex flex-col items-center justify-center p-4 pt-16 pb-8">
+        <div class="max-w-5xl w-full mx-auto text-center text-gray-800 mb-8">
+            <h1 class="text-4xl md:text-5xl font-bold mb-4 leading-tight">
+                אוהבים מתמטיקה? בואו נישאר בקשר!
+            </h1>
+            <p class="text-lg md:text-xl leading-relaxed max-w-3xl mx-auto text-gray-600 mb-8">
+                כיף שהגעתם! המקום הזה הוא בשביל אנשים כמונו, שמתמטיקה פשוט מרגשת אותם. השאירו פרטים ותקבלו ישירות למייל חידות מאתגרות, הצצות לעולם החינוך המתמטי, ועדכונים ראשונים על פתיחת הרשמה לתלמידות/ים ועל הזדמנויות להצטרף אל הצוות שלנו.
+            </p>
+             <a href="#career-section" class="inline-flex items-center gap-2 bg-white border border-gray-300 text-purple-700 font-bold py-2 px-6 rounded-lg text-lg transition-all duration-300 hover:bg-gray-200 hover:shadow-md">
+                <span>מתעניינים במשרות? הפרטים בהמשך</span>
+                <span>👇</span>
+            </a>
+        </div>
+    </header>
+
+    <!-- Form Section -->
+    <section id="newsletter-form-section" class="bg-gray-100 px-4 pb-16">
+        <div class="max-w-6xl w-full mx-auto">
+             <!-- Embedded Form Code Start: Using a direct iframe for reliability and lazy loading for performance -->
+            <iframe 
+                loading="lazy"
+                class="embedded-form-iframe"
+                src="https://lp.landing-page.mobi/index.php?page=landing&id=615463&token=504c6b52b262527d09b02a43759504b7&isEmbeded=1"
+                title="טופס הרשמה">
+            </iframe>
+            <!-- Embedded Form Code End -->
+        </div>
+    </section>
+
+    <main>
+        <!-- Career Section -->
+        <section id="career-section" class="py-20 px-4 bg-white">
+            <div class="max-w-6xl mx-auto">
+                <div class="text-center mb-12">
+                    <h2 class="text-4xl font-bold text-gray-800 mb-4">
+                        רוצים לקחת את האהבה למתמטיקה צעד קדימה?
+                    </h2>
+                    <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                        אנחנו תמיד מחפשים אנשים עם תשוקה וידע, שיכולים להצית את הדמיון של הדור הבא. בחרו את הדרך המתאימה לכם:
+                    </p>
+                </div>
+                
+                <div class="grid md:grid-cols-2 gap-8">
+                    <!-- Coordinator Card -->
+                    <div class="bg-white rounded-2xl shadow-lg card-hover cursor-pointer" onclick="openCareerModal('coordinator')">
+                        <div class="bg-gradient-to-r from-blue-500 to-blue-600 text-white rounded-t-2xl p-6">
+                            <div class="flex items-center justify-center gap-4">
+                                <div class="text-4xl">💼</div>
+                                <h3 class="text-2xl font-bold">קריירה מלאה בהשפעה</h3>
+                            </div>
+                        </div>
+                        <div class="p-8 text-center">
+                            <p class="text-gray-600 leading-relaxed">
+                                בואו להצטרף לצוות המוביל שלנו במשרה מלאה ולהשפיע על חווית הלמידה של מאות בני נוער. אנחנו מאמינים בפוטנציאל ומחפשים אנשים עם רצון עז לצמוח ולהתפתח יחד איתנו.
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <!-- Teaching Card -->
+                    <div class="bg-white rounded-2xl shadow-lg card-hover cursor-pointer" onclick="openCareerModal('teaching')">
+                        <div class="bg-gradient-to-r from-purple-500 to-purple-600 text-white rounded-t-2xl p-6">
+                            <div class="flex items-center justify-center gap-4">
+                                <div class="text-4xl">🎓</div>
+                                <h3 class="text-2xl font-bold">להדליק את הניצוץ בהוראה</h3>
+                            </div>
+                        </div>
+                        <div class="p-8 text-center">
+                            <p class="text-gray-600 leading-relaxed">
+                                רוצים ללמד מתמטיקה בצורה יצירתית ומהנה בתוכנית ההעשרה? או אולי ללמד בתוכנית ההאצה לבגרות? הצטרפו לנבחרת המורות והמורים שלנו למספר שעות שבועיות בשעות אחר הצהריים, והיו חלק מהקסם.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Scroll Up Button Section -->
+        <section class="py-16 px-4 bg-gray-200">
+            <div class="max-w-2xl mx-auto text-center">
+                <h3 class="text-2xl font-bold text-gray-800 mb-4">עדיין מתלבטים לגבי משרה?</h3>
+                <p class="text-lg text-gray-600 mb-6">הכי טוב להישאר מעודכנים. קפצו חזרה למעלה והירשמו לניוזלטר שלנו.</p>
+                <button onclick="scrollToTopForm()" class="bg-purple-600 hover:bg-purple-700 text-white font-bold py-3 px-8 rounded-lg transition-all text-lg shadow-lg hover:shadow-xl transform hover:-translate-y-1">
+                    חזרה להרשמה לעדכונים
+                </button>
+            </div>
+        </section>
+    </main>
+
+    <!-- Career Application Modal -->
+    <div id="applicationModal" class="fixed inset-0 bg-black bg-opacity-60 hidden items-center justify-center z-50 p-4" onclick="closeCareerModal()">
+        <div class="bg-white rounded-2xl max-w-3xl w-full max-h-[90vh] overflow-y-auto" onclick="event.stopPropagation()">
+            <div id="modalContent" class="p-8">
+                <!-- Dynamic content will be injected here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Notification Toast -->
+    <div id="notification-toast" class="bg-gray-800 text-white py-3 px-6 rounded-lg shadow-lg">
+        <p id="notification-message"></p>
+    </div>
+
+    <script>
+        const jobDetails = {
+            coordinator: {
+                title: "קריירה מלאה בהשפעה",
+                icon: "💼",
+                description: `
+                    <p class="text-lg leading-relaxed mb-6">זוהי הזדמנות מדהימה להצטרף לצוות שלנו במשרה מלאה ולהוביל פרויקטים חינוכיים מרגשים. אנחנו מאמינים בפוטנציאל ומחפשים אנשים עם רצון עז לצמוח ולהתפתח יחד איתנו.</p>
+                    <h4 class="font-bold text-xl mb-3">מה בתפקיד?</h4>
+                    <ul class="list-disc list-inside space-y-2 text-lg mb-6">
+                        <li>ניהול תוכניות חינוכיות חדשניות</li>
+                        <li>עבודה עם צוות מקצועי ומנוסה</li>
+                        <li>הזדמנויות פיתוח מקצועי</li>
+                        <li>סביבת עבודה תומכת ויצירתית</li>
+                    </ul>
+                    <h4 class="font-bold text-xl mb-3">דרישות:</h4>
+                    <ul class="list-disc list-inside space-y-2 text-lg">
+                        <li>ניסיון בניהול פרויקטים - יתרון</li>
+                        <li>תשוקה לעולם החינוך והמתמטיקה</li>
+                        <li>יכולות ארגון וסדר ברמה גבוהה</li>
+                        <li>יחסי אנוש מעולים</li>
+                    </ul>
+                `
+            },
+            teaching: {
+                title: "להדליק את הניצוץ בהוראה",
+                icon: "🎓",
+                description: `
+                    <p class="text-lg leading-relaxed mb-6">רוצים ללמד מתמטיקה בצורה יצירתית ומהנה בתוכנית ההעשרה? או אולי ללמד בתוכנית ההאצה לבגרות? הצטרפו לנבחרת המורות והמורים שלנו למספר שעות שבועיות בשעות אחר הצהריים, והיו חלק מהקסם.</p>
+                    <h4 class="font-bold text-xl mb-3">מה בתפקיד?</h4>
+                    <ul class="list-disc list-inside space-y-2 text-lg mb-6">
+                        <li>הוראה בשעות אחר הצהריים</li>
+                        <li>קבוצות קטנות ואינטימיות</li>
+                        <li>גישה לחומרי הוראה מתקדמים</li>
+                        <li>תמיכה וליווי מקצועי מלא</li>
+                    </ul>
+                    <h4 class="font-bold text-xl mb-3">דרישות:</h4>
+                    <ul class="list-disc list-inside space-y-2 text-lg">
+                        <li>ניסיון בהדרכה או הוראה - חובה</li>
+                        <li>שליטה מעולה בחומר לבגרות 5 יח"ל</li>
+                        <li>יכולת ליצור קשר אישי עם תלמידים</li>
+                        <li>אנרגיות טובות ורצון להשקיע</li>
+                    </ul>
+                `
+            }
+        };
+
+        function openCareerModal(careerType) {
+            const details = jobDetails[careerType];
+            if (!details) return;
+
+            const modalContent = document.getElementById('modalContent');
+            modalContent.innerHTML = `
+                <div class="flex justify-between items-start mb-6">
+                    <div class="flex items-center gap-4">
+                        <div class="text-5xl">${details.icon}</div>
+                        <h3 class="text-3xl font-bold text-gray-800">${details.title}</h3>
+                    </div>
+                    <button onclick="closeCareerModal()" class="text-gray-400 hover:text-gray-700 text-3xl font-light">&times;</button>
+                </div>
+                
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div class="prose max-w-none text-gray-700">${details.description}</div>
+                    
+                    <div>
+                        <h4 class="font-bold text-xl mb-4 text-center">רוצה להגיש מועמדות?</h4>
+                        <form class="space-y-4 bg-gray-100 p-6 rounded-lg" onsubmit="handleApplicationSubmit(event)">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">שם מלא</label>
+                                <input type="text" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">מייל</label>
+                                <input type="email" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">טלפון</label>
+                                <input type="tel" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">משהו קצר עליך (אופציונלי)</label>
+                                <textarea rows="3" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"></textarea>
+                            </div>
+                            <button type="submit" class="w-full bg-purple-600 hover:bg-purple-700 text-white font-bold py-3 px-6 rounded-lg">
+                                שלח מועמדות
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            `;
+
+            document.getElementById('applicationModal').classList.remove('hidden');
+            document.getElementById('applicationModal').classList.add('flex');
+            document.body.style.overflow = 'hidden'; // Prevent background scrolling
+        }
+
+        function closeCareerModal() {
+            const modal = document.getElementById('applicationModal');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+            document.body.style.overflow = 'auto'; // Restore background scrolling
+        }
+
+        function showNotification(message) {
+            const toast = document.getElementById('notification-toast');
+            const msgElement = document.getElementById('notification-message');
+            
+            msgElement.textContent = message;
+            toast.style.bottom = '20px';
+
+            setTimeout(() => {
+                toast.style.bottom = '-100px';
+            }, 4000); // Hide after 4 seconds
+        }
+
+        function handleApplicationSubmit(event) {
+            event.preventDefault();
+            const form = event.target;
+            showNotification('תודה על המועמדות! ניצור קשר בהקדם 🎉');
+            form.reset();
+            setTimeout(closeCareerModal, 500); // Close modal after a short delay
+        }
+        
+        function scrollToTopForm() {
+            const formSection = document.getElementById('newsletter-form-section');
+            const stickyHeader = document.getElementById('sticky-header');
+            if (formSection && stickyHeader) {
+                const headerHeight = stickyHeader.offsetHeight;
+                const elementPosition = formSection.getBoundingClientRect().top + window.scrollY;
+                const offsetPosition = elementPosition - headerHeight;
+
+                window.scrollTo({
+                    top: offsetPosition,
+                    behavior: 'smooth'
+                });
+            }
+        }
+
+        // Add keyboard support to close modal
+        window.addEventListener('keydown', (event) => {
+            if (event.key === 'Escape') {
+                closeCareerModal();
+            }
+        });
+
+    </script>
 </body>
 </html>
